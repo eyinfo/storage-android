@@ -1,0 +1,22 @@
+[versions]
+agp = "8.6.0"
+androidPureUtils = "1.0.2"
+appcompat = "1.7.0"
+lombok = "1.18.36"
+material = "1.10.0"
+mpkv = "1.0.1"
+realmGradlePlugin = "10.19.0"
+
+[libraries]
+eyinfo-android-pure-utils = { module = "io.github.eyinfo:android-pure-utils", version.ref = "androidPureUtils" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+mpkv = { module = "io.github.eyinfo:mpkv", version.ref = "mpkv" }
+realm-android-library-object-server = { module = "io.realm:realm-android-library-object-server", version.ref = "realmGradlePlugin" }
+realm-gradle-plugin = { module = "io.realm:realm-gradle-plugin", version.ref = "realmGradlePlugin" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+

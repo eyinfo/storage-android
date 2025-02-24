@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">storage</string>
+    <string name="add_data">添加数据</string>
+    <string name="update_data">更新数据</string>
+    <string name="query_data">查询数据</string>
+    <string name="count_data">统计数据</string>
+    <string name="with_page_data">用页码分页查询</string>
+    <string name="with_sort_page_data">用排序分页查询</string>
+    <string name="delete_data">删除数据</string>
+</resources>
