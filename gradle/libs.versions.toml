@@ -6,6 +6,7 @@ lombok = "1.18.36"
 material = "1.10.0"
 mpkv = "1.0.1"
 realmGradlePlugin = "10.19.0"
+storage = "1.0.0"
 
 [libraries]
 eyinfo-android-pure-utils = { module = "io.github.eyinfo:android-pure-utils", version.ref = "androidPureUtils" }
@@ -15,6 +16,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 mpkv = { module = "io.github.eyinfo:mpkv", version.ref = "mpkv" }
 realm-android-library-object-server = { module = "io.realm:realm-android-library-object-server", version.ref = "realmGradlePlugin" }
 realm-gradle-plugin = { module = "io.realm:realm-gradle-plugin", version.ref = "realmGradlePlugin" }
+storage = { module = "io.github.eyinfo:storage", version.ref = "storage" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

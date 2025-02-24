@@ -38,5 +38,6 @@ dependencies {
     implementation libs.material
     api libs.lombok
     annotationProcessor(libs.lombok)
-    implementation project(':storage')
+    api libs.storage
+//    implementation project(':storage')
 }
