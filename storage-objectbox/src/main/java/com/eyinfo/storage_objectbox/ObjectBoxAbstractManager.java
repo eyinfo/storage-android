@@ -27,7 +27,6 @@ public class ObjectBoxAbstractManager {
      * @param applicationContext 上下文
      * @param builder            由MyObjectBox.builder()获取
      * @param dbKey              数据库唯一标识
-     * @return BoxStore
      */
     protected void init(Context applicationContext, BoxStoreBuilder builder, String dbKey) {
         BoxStore boxStore = boxStoreMap.get(dbKey);

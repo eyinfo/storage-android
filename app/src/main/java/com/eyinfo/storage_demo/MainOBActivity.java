@@ -32,11 +32,7 @@ public class MainOBActivity extends Activity {
     }
 
     public void onAddDataClick(View view) {
-        try {
-            OBManager.getInstance().insertOrUpdate(UserOB.class, getUsers());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        OBManager.getInstance().insertOrUpdate(UserOB.class, getUsers());
     }
 
     public void onUpdateDataClick(View view) {
@@ -63,7 +59,12 @@ public class MainOBActivity extends Activity {
     }
 
     public void onCountDataClick(View view) {
-        int count = OBManager.getInstance().count(UserOB.class, null);
+        int count = OBManager.getInstance().count(UserOB.class, new Action1<QueryBuilder<UserOB>>() {
+            @Override
+            public void call(QueryBuilder<UserOB> userOBQueryBuilder) {
+                //这里设置统计数据的查询条件
+            }
+        });
     }
 
     public void onWithPageDataClick(View view) {
