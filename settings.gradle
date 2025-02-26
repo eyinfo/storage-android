@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "storage"
 include ':app'
 include ':storage'
+include ':storage-objectbox'
+include ':storage-realm'

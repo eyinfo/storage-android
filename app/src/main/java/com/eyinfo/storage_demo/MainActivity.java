@@ -6,9 +6,9 @@ import android.view.View;
 
 import com.eyinfo.android_pure_utils.events.Action1;
 import com.eyinfo.android_pure_utils.events.Func1;
-import com.eyinfo.storage.realm.PageInfo;
-import com.eyinfo.storage.realm.RealmManager;
 import com.eyinfo.storage_demo.beans.User;
+import com.eyinfo.storage_realm.PageInfo;
+import com.eyinfo.storage_realm.RealmManager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -38,6 +38,8 @@ dependencies {
     implementation libs.material
     api libs.lombok
     annotationProcessor(libs.lombok)
-    api libs.storage
-//    implementation project(':storage')
+//    api libs.storage
+//    api libs.eyinfo.storage.realm
+//    api libs.eyinfo.storage.objectbox
+    implementation project(':storage-realm')
 }

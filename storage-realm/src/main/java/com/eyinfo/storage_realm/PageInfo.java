@@ -1,4 +1,4 @@
-package com.eyinfo.storage.realm;
+package com.eyinfo.storage_realm;
 
 import java.io.Serializable;
 import java.util.List;

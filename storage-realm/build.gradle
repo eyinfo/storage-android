@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.eyinfo.storage'
+    namespace 'com.eyinfo.storage_realm'
     compileSdk 34
 
     defaultConfig {
@@ -32,16 +32,18 @@ android {
 dependencies {
     implementation libs.appcompat
     implementation libs.material
-    api libs.mpkv
-    api libs.eyinfo.android.pure.utils
+    api libs.lombok
+    annotationProcessor(libs.lombok)
+    api libs.storage
+    api libs.realm.android.library.object.server
 }
 
-
 mavenPublishing {
-    def VERSION = "1.0.2"
+    def VERSION = "1.0.0"
     def GROUP_ID = "io.github.eyinfo"
-    def ARTIFACT_ID = "storage"
-    def DESCRIPTION = "Android storage infrastructure"
+    def ARTIFACT_ID = "storage-realm"
+    def DESCRIPTION = "Android is based on Realm encapsulation tool library"
+
     coordinates(GROUP_ID, ARTIFACT_ID, VERSION)
     pom {
         name = ARTIFACT_ID

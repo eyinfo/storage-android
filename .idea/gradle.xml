@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/storage" />
+            <option value="$PROJECT_DIR$/storage-objectbox" />
+            <option value="$PROJECT_DIR$/storage-realm" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

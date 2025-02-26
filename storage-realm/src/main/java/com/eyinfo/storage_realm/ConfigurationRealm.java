@@ -1,4 +1,4 @@
-package com.eyinfo.storage.realm;
+package com.eyinfo.storage_realm;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
