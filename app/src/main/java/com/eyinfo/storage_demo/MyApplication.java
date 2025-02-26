@@ -9,10 +9,15 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ConfigurationRealm.getInstance().init(
-                getApplicationContext(),
-                "storage.realm",
-                new UserModules()
-        );
+        try {
+            ConfigurationRealm.getInstance().init(
+                    getApplicationContext(),
+                    "storage.realm",
+                    new UserModules()
+            );
+            OBManager.getInstance().init(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

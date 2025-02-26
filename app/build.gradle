@@ -3,6 +3,7 @@ plugins {
 }
 
 apply plugin: "realm-android"
+apply plugin: 'io.objectbox'
 
 android {
     namespace 'com.eyinfo.storage_demo'
@@ -39,7 +40,7 @@ dependencies {
     api libs.lombok
     annotationProcessor(libs.lombok)
 //    api libs.storage
-//    api libs.eyinfo.storage.realm
-//    api libs.eyinfo.storage.objectbox
-    implementation project(':storage-realm')
+    api libs.eyinfo.storage.realm
+    api libs.eyinfo.storage.objectbox
+//    implementation project(':storage-objectbox')
 }

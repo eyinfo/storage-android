@@ -6,6 +6,8 @@ plugins {
     id "signing"
 }
 
+apply plugin: 'io.objectbox'
+
 android {
     namespace 'com.eyinfo.storage_objectbox'
     compileSdk 34
@@ -32,9 +34,8 @@ android {
 dependencies {
     implementation libs.appcompat
     implementation libs.material
-    api libs.lombok
-    annotationProcessor(libs.lombok)
-    api "io.github.eyinfo:storage:1.0.2"
+    api libs.storage
+    api libs.objectbox.android
 }
 
 mavenPublishing {

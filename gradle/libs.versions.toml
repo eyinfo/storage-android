@@ -5,6 +5,7 @@ appcompat = "1.7.0"
 lombok = "1.18.36"
 material = "1.10.0"
 mpkv = "1.0.1"
+objectboxGradlePlugin = "4.1.0"
 realmGradlePlugin = "10.19.0"
 storage = "1.0.2"
 storageObjectbox = "1.0.0"
@@ -18,6 +19,8 @@ eyinfo-storage-realm = { module = "io.github.eyinfo:storage-realm", version.ref 
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mpkv = { module = "io.github.eyinfo:mpkv", version.ref = "mpkv" }
+objectbox-android = { module = "io.objectbox:objectbox-android", version.ref = "objectboxGradlePlugin" }
+objectbox-gradle-plugin = { module = "io.objectbox:objectbox-gradle-plugin", version.ref = "objectboxGradlePlugin" }
 realm-android-library-object-server = { module = "io.realm:realm-android-library-object-server", version.ref = "realmGradlePlugin" }
 realm-gradle-plugin = { module = "io.realm:realm-gradle-plugin", version.ref = "realmGradlePlugin" }
 storage = { module = "io.github.eyinfo:storage", version.ref = "storage" }
