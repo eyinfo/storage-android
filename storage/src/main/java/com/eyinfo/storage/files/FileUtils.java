@@ -312,7 +312,7 @@ public class FileUtils extends BasicFilename {
      * param fromFile
      * param toFile
      */
-    public static void copyFiles(String fromFile, String toFile) throws IOException {
+    public static void copyFiles(String fromFile, String toFile) {
         // 要复制的文件目录
         File[] currentFiles;
         File root = new File(fromFile);
@@ -344,31 +344,35 @@ public class FileUtils extends BasicFilename {
         }
     }
 
-    public static void copyFiles(File fromFile, File toFile) throws IOException {
+    public static void copyFiles(File fromFile, File toFile) {
         String fromPath = fromFile.getAbsolutePath();
         String toPath = toFile.getAbsolutePath();
         copyFiles(fromPath, toPath);
     }
 
-    public static void copyFile(String fromFile, String toFile) throws IOException {
-        FileInputStream fosFrom = new FileInputStream(fromFile);
-        FileOutputStream fosTo = new FileOutputStream(toFile);
-        byte bt[] = new byte[4096];
-        int c;
-        while ((c = fosFrom.read(bt)) > 0) {
-            fosTo.write(bt, 0, c);
+    public static void copyFile(String fromFile, String toFile) {
+        try {
+            FileInputStream fosFrom = new FileInputStream(fromFile);
+            FileOutputStream fosTo = new FileOutputStream(toFile);
+            byte bt[] = new byte[4096];
+            int c;
+            while ((c = fosFrom.read(bt)) > 0) {
+                fosTo.write(bt, 0, c);
+            }
+            fosFrom.close();
+            fosTo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        fosFrom.close();
-        fosTo.close();
     }
 
-    public static void copyFile(File fromFile, File toFile) throws IOException {
-        String frompath = fromFile.getAbsolutePath();
-        String topath = toFile.getAbsolutePath();
-        copyFile(frompath, topath);
+    public static void copyFile(File fromFile, File toFile) {
+        String fromPath = fromFile.getAbsolutePath();
+        String toPath = toFile.getAbsolutePath();
+        copyFile(fromPath, toPath);
     }
 
-    public static void save(String content, File tofile) throws IOException {
+    public static void save(String content, File tofile) {
         if (TextUtils.isEmpty(content) || tofile == null) {
             return;
         }
@@ -376,14 +380,18 @@ public class FileUtils extends BasicFilename {
         if (tofile.exists()) {
             boolean delete = tofile.delete();
         }
-        boolean newFile = tofile.createNewFile();
-        byte[] bs = content.getBytes();
-        FileOutputStream fosTo = new FileOutputStream(tofile);
-        fosTo.write(bs, 0, content.length());
-        fosTo.close();
+        try {
+            boolean newFile = tofile.createNewFile();
+            byte[] bs = content.getBytes();
+            FileOutputStream fosTo = new FileOutputStream(tofile);
+            fosTo.write(bs, 0, content.length());
+            fosTo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void appendContent(String content, File tofile) throws IOException {
+    public static void appendContent(String content, File tofile) {
         if (TextUtils.isEmpty(content) || tofile == null) {
             return;
         }
@@ -391,13 +399,17 @@ public class FileUtils extends BasicFilename {
             return;
         }
         content = content.trim();
-        if (!tofile.exists()) {
-            boolean newFile = tofile.createNewFile();
+        try {
+            if (!tofile.exists()) {
+                boolean newFile = tofile.createNewFile();
+            }
+            byte[] bs = content.getBytes();
+            OutputStream fosTo = new FileOutputStream(tofile, true);
+            fosTo.write(bs, 0, content.length());
+            fosTo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        byte[] bs = content.getBytes();
-        OutputStream fosTo = new FileOutputStream(tofile, true);
-        fosTo.write(bs, 0, content.length());
-        fosTo.close();
     }
 
     /**
@@ -407,31 +419,41 @@ public class FileUtils extends BasicFilename {
      * @param fileName 文件名
      * @return inputStream
      */
-    public static InputStream getAssetsInputStream(Context context, String fileName) throws IOException {
+    public static InputStream getAssetsInputStream(Context context, String fileName) {
         if (context == null || TextUtils.isEmpty(fileName)) {
             return null;
         }
-        return context.getAssets().open(fileName);
+        try {
+            return context.getAssets().open(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
      * 获取文件(一般指文本文件)内容
      * <p>
-     * param targetfile 目标文件
+     * param targetFile 目标文件
      * return 内容
      */
-    public static String readContent(File targetfile) throws Exception {
-        if (targetfile == null || !targetfile.exists()) {
+    public static String readContent(File targetFile) {
+        if (targetFile == null || !targetFile.exists()) {
             return "";
         }
         String result = "";
-        FileInputStream fis = new FileInputStream(targetfile);
-        int available = fis.available();
-        byte[] buffer = new byte[available];
-        int read = fis.read(buffer);
-        result = new String(buffer, StandardCharsets.UTF_8);
-        fis.close();
-        return result;
+        try {
+            FileInputStream fis = new FileInputStream(targetFile);
+            int available = fis.available();
+            byte[] buffer = new byte[available];
+            int read = fis.read(buffer);
+            result = new String(buffer, StandardCharsets.UTF_8);
+            fis.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**
@@ -440,17 +462,22 @@ public class FileUtils extends BasicFilename {
      * @param is 输出流
      * @return 输出内容
      */
-    public static String readContent(InputStream is) throws IOException {
-        if (is == null || is.available() <= 0) {
-            return "";
+    public static String readContent(InputStream is) {
+        try {
+            if (is == null || is.available() <= 0) {
+                return "";
+            }
+            String result = "";
+            int available = is.available();
+            byte[] buffer = new byte[available];
+            int read = is.read(buffer);
+            result = new String(buffer, StandardCharsets.UTF_8);
+            is.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        String result = "";
-        int available = is.available();
-        byte[] buffer = new byte[available];
-        int read = is.read(buffer);
-        result = new String(buffer, StandardCharsets.UTF_8);
-        is.close();
-        return result;
+        return "";
     }
 
     /**
@@ -460,7 +487,7 @@ public class FileUtils extends BasicFilename {
      * @param fileName 文件名
      * @return true-存在;false-不存在;
      */
-    public static boolean isExsitsAssetsFile(Context context, String fileName) {
+    public static boolean isExitsAssetsFile(Context context, String fileName) {
         if (context == null || TextUtils.isEmpty(fileName)) {
             return false;
         }
@@ -492,7 +519,7 @@ public class FileUtils extends BasicFilename {
             if (context == null || TextUtils.isEmpty(fileName)) {
                 return "";
             }
-            if (!isExsitsAssetsFile(context, fileName)) {
+            if (!isExitsAssetsFile(context, fileName)) {
                 //如果不存在则返回
                 return "";
             }
@@ -517,16 +544,20 @@ public class FileUtils extends BasicFilename {
      * param bt       图片
      * return
      */
-    public static File saveBitmap(File dir, String filename, Bitmap bt) throws IOException {
+    public static File saveBitmap(File dir, String filename, Bitmap bt) {
         File mfile = new File(dir, filename);
         if (mfile.exists()) {
             boolean delete = mfile.delete();
         }
-        boolean newFile = mfile.createNewFile();
-        FileOutputStream out = new FileOutputStream(mfile);
-        bt.compress(Bitmap.CompressFormat.PNG, 90, out);
-        out.flush();
-        out.close();
+        try {
+            boolean newFile = mfile.createNewFile();
+            FileOutputStream out = new FileOutputStream(mfile);
+            bt.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mfile;
     }
 
